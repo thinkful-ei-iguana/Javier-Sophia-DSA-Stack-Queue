@@ -126,6 +126,8 @@ dancingTeam.enqueue({ gender: 'M', name: 'John' });
 function pairUp(team) {
     const maleTeam = new Queue();
     const femaleTeam = new Queue();
+    const leftoverMales = new Queue();
+    let count = 0;
 
     while (dancingTeam.first !== null) {
         const nextPerson = dancingTeam.first.val;
@@ -145,8 +147,14 @@ function pairUp(team) {
             maleTeam.dequeue();
         }
 
-
+        if (maleTeam.first !== null) {
+            count++
+            leftoverMales.enqueue(maleTeam.first.val)
+        }
     }
+
+    console.log(count);
+    console.log(leftoverMales);
 }
 
 pairUp(dancingTeam)
